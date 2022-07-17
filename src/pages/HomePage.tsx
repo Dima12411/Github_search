@@ -4,14 +4,15 @@ import {useDebounce} from "../hooks/debounce";
 
 const HomePage = () => {
     const [search, setSearch] = useState<string>('')
+    const [dropdown, setDropdown] = useState<boolean>(false)
     const debounced = useDebounce(search)
     const {isLoading, isError, data} = useSearchUsersQuery(debounced, {
         skip: debounced.length < 3
     })
 
     useEffect(() => {
-
-    }, [debounced])
+        setDropdown(debounced.length > 3 && data?.length! > 0)
+    }, [debounced, data])
 
     return (
         <div className='flex justify-center pt-10 mx-auto h-screen w-screen'>
@@ -25,7 +26,7 @@ const HomePage = () => {
                        onChange={e => setSearch(e.currentTarget.value)}
                 />
 
-                <ul className='list-none absolute top-[42px] left-0 right-0 max-h-[200px] overflow-y-scroll shadow-md bg-white'>
+                {dropdown && <ul className='list-none absolute top-[42px] left-0 right-0 max-h-[200px] overflow-y-scroll shadow-md bg-white'>
                     { isLoading && <p className='text-center'>Loading...</p> }
                     { data?.map(user => (
                         <li key={user.id}
@@ -33,7 +34,7 @@ const HomePage = () => {
                         >{user.login}
                         </li>
                     )) }
-                </ul>
+                </ul>}
             </div>
         </div>
     );
