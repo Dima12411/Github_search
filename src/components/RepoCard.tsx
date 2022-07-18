@@ -4,11 +4,16 @@ import {useActions} from "../hooks/actions";
 
 const RepoCard = ({repo}: { repo: IRepo }) => {
 
-    const {addFavourite} = useActions()
+    const {addFavourite, removeFavourite} = useActions()
 
     const addToFavourite = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         addFavourite(repo.html_url)
+    }
+
+    const removeForFavourite = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault()
+        removeFavourite(repo.html_url)
     }
 
     return (
@@ -24,6 +29,10 @@ const RepoCard = ({repo}: { repo: IRepo }) => {
                 <button className='py-2 px-4 bg-yellow-400 rounded hover:shadow-md transition-all active:opacity-50'
                         onClick={addToFavourite}
                 >Add</button>
+
+                <button className='py-2 px-4 ml-[6px] bg-red-400 rounded hover:shadow-md transition-all active:opacity-50'
+                        onClick={removeForFavourite}
+                >Remove</button>
             </a>
         </div>
     );
