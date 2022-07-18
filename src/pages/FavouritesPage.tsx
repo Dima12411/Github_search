@@ -15,7 +15,7 @@ const FavouritesPage = () => {
             <ul className='list-none '>
                 {favourites.map(f => (
                     <li key={f}
-                        className='border py-3 px-5 rounded mb-2 hover:shadow-md hover:bg-gray-100 transition-all'
+                        className='border bg-gray-100 py-3 px-5 rounded mb-2 hover:shadow-md hover:bg-gray-200 transition-all cursor-pointer '
                     >
                         <a href={f} target='_blank'>{f}</a>
                     </li>
