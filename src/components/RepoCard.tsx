@@ -21,7 +21,7 @@ const RepoCard = ({repo}: { repo: IRepo }) => {
                 </p>
                 <p className='text-sm font-thin'>{repo?.description}</p>
 
-                <button className='py-2 px-4 bg-yellow-400 rounded hover:shadow-md transition-all'
+                <button className='py-2 px-4 bg-yellow-400 rounded hover:shadow-md transition-all active:opacity-50'
                         onClick={addToFavourite}
                 >Add</button>
             </a>
